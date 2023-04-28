@@ -1,0 +1,273 @@
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap");
+
+/* common */
+* {
+  box-sizing: border-box;
+}
+body {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  font-family: system-ui, sans-serif;
+  overflow-x: hidden;
+}
+.hidden {
+  display: none;
+}
+input {
+  opacity: 0.3;
+  backdrop-filter: blur(1px);
+  width: 15rem;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  border: 0 none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+}
+input:hover,
+input:focus,
+input:active {
+  opacity: 0.9;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+input:focus::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+input:focus {
+  outline: 1px dotted rgba(0, 0, 0, 0.5);
+}
+button {
+  background-color: transparent;
+  border: 0 none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.4);
+}
+button:focus {
+  outline: 0 none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* greeting */
+#login-form {
+  height: 3.5rem;
+}
+#greeting {
+  font-size: 3.5rem;
+  font-weight: 200;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: system-ui, sans-serif;
+  cursor: pointer;
+}
+
+/* clock-weather */
+.clock-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+#weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Bahnschrift, "DIN Alternate", "Franklin Gothic Medium", "Nimbus Sans Narrow", sans-serif-condensed, sans-serif;
+  font-size: 1.5rem;
+  visibility: hidden;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+}
+#weather.active {
+  visibility: visible;
+}
+.weather__loc {
+  margin-left: 1rem;
+}
+.weather__id img {
+  height: 2.5rem;
+  opacity: 0.7;
+  position: absolute;
+  top: -0.5rem;
+  right: -2rem;
+}
+#clock {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Bahnschrift, "DIN Alternate", "Franklin Gothic Medium", "Nimbus Sans Narrow", sans-serif-condensed, sans-serif;
+  white-space: nowrap;
+  font-size: 12rem;
+  cursor: pointer;
+}
+
+/* quote */
+#quote {
+  backdrop-filter: blur(3px);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0.01) 100%);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+  color: rgba(0, 0, 0, 0.75);
+  padding: 1rem 5rem;
+  word-break: keep-all;
+  width: 50rem;
+  max-width: 90%;
+  text-align: center;
+  font-family: "Noto Serif KR", Didot, "Bodoni MT", "Noto Serif Display", "URW Palladio L", P052, Sylfaen, serif;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  position: relative;
+  cursor: pointer;
+}
+.quote__author {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 80%;
+}
+.quote__cite {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -2.5rem;
+  left: 0;
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* todo */
+.todo {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  flex-direction: column-reverse;
+  font-weight: 400;
+  max-width: 80%;
+}
+#todo-list {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  padding: 0;
+  gap: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  margin-bottom: 0.2rem;
+}
+#todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 3;
+  width: 15rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+#todo-list li span {
+  cursor: pointer;
+  padding-right: 1rem;
+}
+#todo-list li span.js-clock {
+  cursor: auto;
+}
+#todo-list li.checked span {
+  text-decoration: line-through rgba(0, 0, 0, 0.5);
+}
+.todo input {
+  text-align: right;
+}
+.todo input::placeholder {
+  text-align: right;
+}
+.todo button {
+  background-color: transparent;
+  border: 0 none;
+  transform: scale(0.5);
+  line-height: 1;
+  width: 1rem;
+  height: 1rem;
+  padding-left: 2rem;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 400;
+}
+.todo button:focus {
+  outline: 0 none;
+  color: rgba(0, 0, 0, 0.6);
+}
+.bg-from {
+  position: fixed;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.3);
+}
+.bg-from a,
+.bg-from a:visited {
+  color: inherit;
+}
+
+@media screen and (max-width: 44rem) {
+  #clock {
+    font-size: 8rem;
+  }
+  #quote {
+    padding: 1rem 2rem;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+  }
+  .quote__author {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+  }
+}
+@media screen and (max-width: 30rem) {
+  input {
+    opacity: 0.5;
+  }
+  #login-form button {
+    display: none;
+  }
+  #login-form {
+    height: 2rem;
+  }
+  #greeting {
+    font-size: 2rem;
+  }
+  #weather {
+    position: static;
+    font-size: 1rem;
+    width: 100%;
+  }
+  .weather__stat {
+    margin: 0.85rem 0;
+  }
+  .weather__id img {
+    position: static;
+  }
+  #clock {
+    font-size: 5rem;
+  }
+  #quote {
+    font-size: 1rem;
+  }
+  .todo {
+    position: static;
+    width: 90%;
+    opacity: 1;
+  }
+  .todo input {
+    width: 100%;
+  }
+}

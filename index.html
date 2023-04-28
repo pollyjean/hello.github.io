@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/greetings.js"></script>
+  <script defer src="js/clock.js"></script>
+  <script defer src="js/quotes.js"></script>
+  <script defer src="js/background.js"></script>
+  <script defer src="js/todo.js"></script>
+  <script defer src="js/weather.js"></script>
+  <script defer src="js/holiday.js"></script>
+</head>
+<body>
+  <form id="login-form" class="hidden">
+    <input type="text" placeholder="What is your name?" maxlength="12" required>
+    <button>Log In</button>
+  </form>
+
+  <h1 id="greeting" class="hidden" title="더블클릭하면 이름 변경할 수 있습니다">Hello</h1>
+
+  <div class="clock-weather">
+    <div id="weather">
+      <time id="cal">2023-01-01 SUN</time>
+      <span class="weather__loc">Location</span>
+      <span class="weather__temp">Temp</span>
+      <span class="weather__stat hidden">State</span>
+      <span class="weather__id"></span>
+
+    </div>
+
+    <time id="clock">00:00:00</time>
+    
+  </div>
+  
+  <figure id="quote">
+    <blockquote cite="" class="quote__block">
+      <p class="quote__text"></p>
+    </blockquote>
+    <figcaption class="quote__author"></figcaption>
+  </figure>
+  
+  <div class="todo">
+    <form id="todo-form">
+      <input type="text" placeholder="Write a memo" maxlength="17" required>
+    </form>
+    <ul id="todo-list">
+      <li><span class="js-clock"></span></li>
+    </ul>
+  </div>
+
+  <p class="bg-from">Background Image <a href="https://unsplash.com/">https://unsplash.com/</a></p>
+</body>
+</html>
