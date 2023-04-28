@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/greetings.js"></script>
   <script defer src="js/clock.js"></script>
+  <script defer src="js/timer.js"></script>
   <script defer src="js/quotes.js"></script>
   <script defer src="js/background.js"></script>
   <script defer src="js/todo.js"></script>
@@ -15,9 +16,14 @@
   <script defer src="js/holiday.js"></script>
 </head>
 <body>
+  <form id="timer-form">
+    <input type="number" id="timer__input" min="5" max="60" step="5" value="40" pattern="\d{1,2}" required /> <label for="timer__input"
+      class="timer__label">min focus.</label> <span class="timer__break">20 min. break time</span>
+    <button class="timer__btn">start</button>
+  </form>
+
   <form id="login-form" class="hidden">
-    <input type="text" placeholder="What is your name?" maxlength="12" required>
-    <button>Log In</button>
+    <input type="text" placeholder="Type a name and press Enter." maxlength="12" required>
   </form>
 
   <h1 id="greeting" class="hidden" title="더블클릭하면 이름 변경할 수 있습니다">Hello</h1>
@@ -29,11 +35,9 @@
       <span class="weather__temp">Temp</span>
       <span class="weather__stat hidden">State</span>
       <span class="weather__id"></span>
-
     </div>
 
     <time id="clock">00:00:00</time>
-    
   </div>
   
   <figure id="quote">
@@ -45,7 +49,7 @@
   
   <div class="todo">
     <form id="todo-form">
-      <input type="text" placeholder="Write a memo" maxlength="17" required>
+      <input type="text" placeholder="Type a note and press Enter." maxlength="17" required>
     </form>
     <ul id="todo-list">
       <li><span class="js-clock"></span></li>

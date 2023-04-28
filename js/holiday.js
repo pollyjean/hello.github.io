@@ -7,7 +7,7 @@ function getClock() {
   const hours = Math.floor((dday / (60 * 60 * 1000)) % 24);
   const minutes = Math.floor((dday / (60 * 1000)) % 60);
   // const seconds = Math.floor((dday / 1000) % 60);
-  clockTitle.innerText = `X-Mas 까지 ${days}일 ${hours}시간 ${minutes}분`;
+  clockTitle.innerText = `${days}d ${hours}h ${minutes}m left until Holiday.`;
 }
 getClock();
 setInterval(getClock, 1000);

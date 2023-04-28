@@ -7,6 +7,7 @@
 }
 body {
   background-size: cover;
+  background-repeat: repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -19,7 +20,7 @@ body {
   display: none;
 }
 input {
-  opacity: 0.3;
+  opacity: 0.6;
   backdrop-filter: blur(1px);
   width: 15rem;
   border-radius: 15px;
@@ -27,13 +28,13 @@ input {
   border: 0 none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
 }
 input:hover,
 input:focus,
 input:active {
   opacity: 0.9;
   border-radius: 10px;
-  transition: all 0.3s ease-in-out;
 }
 input:focus::placeholder {
   color: rgba(0, 0, 0, 0.4);
@@ -43,13 +44,63 @@ input:focus {
 }
 button {
   background-color: transparent;
+  background: rgba(255, 255, 255, 0.4);
   border: 0 none;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.4);
-}
-button:focus {
+  padding: 0.45rem;
+  border-radius: 10px;
+  box-shadow: 0 none;
+  color: rgba(0, 0, 0, 0.6);
   outline: 0 none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+button:focus,
+button:active {
+  outline: 1px dotted rgba(0, 0, 0, 0.3);
+  box-shadow: none;
+}
+
+/* timer */
+#timer-form {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  height: 2rem;
+}
+#timer__input {
+  width: 4rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  text-align: right;
+  position: relative;
+  top: 1px;
+  transition: all 0.2s ease-in-out;
+}
+.timer__btn {
+  width: 3.5rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.65);
+  background: white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0.65;
+}
+.timer__btn:hover,
+.timer__btn:active,
+.timer__btn:focus,
+.timer__btn.active {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.7);
+}
+#timer-form .now-time {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  opacity: 0.9;
 }
 
 /* greeting */
@@ -113,7 +164,7 @@ button:focus {
   backdrop-filter: blur(3px);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0.01) 100%);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 0.65);
   padding: 1rem 5rem;
   word-break: keep-all;
   width: 50rem;
@@ -121,6 +172,7 @@ button:focus {
   text-align: center;
   font-family: "Noto Serif KR", Didot, "Bodoni MT", "Noto Serif Display", "URW Palladio L", P052, Sylfaen, serif;
   font-size: 1.25rem;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.35));
   line-height: 1.3;
   position: relative;
   cursor: pointer;
@@ -140,7 +192,7 @@ button:focus {
   bottom: -2.5rem;
   left: 0;
   font-size: 0.7rem;
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 /* todo */
@@ -194,13 +246,16 @@ button:focus {
 .todo button {
   background-color: transparent;
   border: 0 none;
-  transform: scale(0.5);
+  font-size: 0.6rem;
   line-height: 1;
   width: 1rem;
   height: 1rem;
-  padding-left: 2rem;
+  padding: 0 0.6rem;
   color: rgba(0, 0, 0, 0.3);
   font-weight: 400;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  top: 1px;
 }
 .todo button:focus {
   outline: 0 none;
@@ -219,6 +274,9 @@ button:focus {
 }
 
 @media screen and (max-width: 44rem) {
+  #timer-form {
+    font-size: 0.9rem;
+  }
   #clock {
     font-size: 8rem;
   }
@@ -233,8 +291,17 @@ button:focus {
   }
 }
 @media screen and (max-width: 30rem) {
+  body {
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0 1.5rem;
+    overflow-y: auto;
+  }
   input {
     opacity: 0.5;
+  }
+  #timer-form {
+    position: static;
   }
   #login-form button {
     display: none;
@@ -262,6 +329,9 @@ button:focus {
   #quote {
     font-size: 1rem;
   }
+  .quote__cite {
+    position: static;
+  }
   .todo {
     position: static;
     width: 90%;
@@ -269,5 +339,8 @@ button:focus {
   }
   .todo input {
     width: 100%;
+  }
+  .bg-from {
+    position: static;
   }
 }

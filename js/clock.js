@@ -8,10 +8,12 @@ function getTime() {
   const hours = d.getHours().toString().padStart(2, "0");
   const minutes = d.getMinutes().toString().padStart(2, "0");
   const seconds = d.getSeconds().toString().padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  const hours_ampm = hours > 12 ? hours - 12 : hours;
   if (minutes === "00" && seconds === "00") {
     paintCal();
   }
-  return isSeconds ? `${hours}:${minutes}:${seconds}` : `${hours}:${minutes}`;
+  return isSeconds ? `${hours}:${minutes}:${seconds}` : `${ampm} ${hours}:${minutes}`;
 }
 function switchSeconds() {
   isSeconds = !isSeconds;
