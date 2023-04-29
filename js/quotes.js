@@ -1,3 +1,5 @@
+"use strict";
+
 const quotes = [
   {
     quote: "Weniger, Aber Besser. (Less but better.)",
@@ -10,17 +12,17 @@ const quotes = [
     citation: "Steve Jobs: Stanford commencement address, June 2005",
   },
   {
-    quote: "신독(愼獨) : (군자는 반드시) 홀로 있을 때에도 삼가는 것",
+    quote: "신독(愼獨) : (군자는 반드시) 홀로 있을 때에도 삼가는 것.",
     author: "공자(孔子)",
     citation: "중용, 자사(子思: B.C.483~402)",
   },
   {
-    quote: "물령망동 정중여산(勿令妄動 靜重如山) : 함부로 가벼이 움직이지 마라. 태산같이 신중하게 행동하라",
+    quote: "물령망동 정중여산(勿令妄動 靜重如山) : 함부로 가벼이 움직이지 마라. 태산같이 신중하게 행동하라.",
     author: "이순신",
     citation: "난중일기, 1592년 5월 7일 옥포해전 당시",
   },
   {
-    quote: "무슨 생각을 해... 그냥 하는 거지",
+    quote: "무슨 생각을 해... 그냥 하는 거지.",
     author: "김연아",
     citation: "[MBC 특집] 퀸연아! 나는 대한민국이다. 2009년 5월 17일 방송분",
   },
@@ -40,7 +42,7 @@ const quotes = [
     citation: "The Last of us(PlayStation 게임, Naughty Dog, Sony Interactive Entertainment)",
   },
   {
-    quote: "이 길이 내 길인 줄 아는 게 아니라 / 그냥 길이 그냥 거기 있으니까 가는 거야 / 원래부터 내 길이 있는 게 아니라 / 가다보면 어찌어찌 내 길이 되는 거야",
+    quote: "이 길이 내 길인 줄 아는 게 아니라 / 그냥 길이 그냥 거기 있으니까 가는 거야 / 원래부터 내 길이 있는 게 아니라 / 가다보면 어찌어찌 내 길이 되는 거야.",
     author: "장기하와 얼굴들 - 그건 니 생각이고",
     citation: "장기하와 얼굴들 mono 앨범(2018) 중 에서",
   },

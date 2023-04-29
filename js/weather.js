@@ -1,3 +1,5 @@
+"use strict";
+
 const API_KEY = "9069349b13f012579bd411d9cec732fd";
 const weatherElement = document.querySelector("#weather");
 const weatherLoc = document.querySelector(".weather__loc");
@@ -52,8 +54,6 @@ const searchWeather = (weatherId) => {
       } else if (weather === "803" || weather === "804") {
         return "04";
       }
-    default:
-      break;
   }
 };
 const searchDayNight = () => {

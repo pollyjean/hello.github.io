@@ -1,3 +1,5 @@
+"use strict";
+
 const clockTitle = document.querySelector(".js-clock");
 function getClock() {
   const xmas = new Date(`${new Date().getFullYear()}/12/25 00:00:00`);

@@ -1,6 +1,8 @@
-const clock = document.querySelector("#clock");
-const cal = document.querySelector("#cal");
+"use strict";
+
 const clockWrap = document.querySelector(".clock-weather");
+const clock = clockWrap.querySelector("#clock");
+const cal = clockWrap.querySelector("#cal");
 let isSeconds = true;
 
 function getTime() {
@@ -13,7 +15,7 @@ function getTime() {
   if (minutes === "00" && seconds === "00") {
     paintCal();
   }
-  return isSeconds ? `${hours}:${minutes}:${seconds}` : `${ampm} ${hours}:${minutes}`;
+  return isSeconds ? `${hours}:${minutes}:${seconds}` : `${ampm} ${hours_ampm}:${minutes}`;
 }
 function switchSeconds() {
   isSeconds = !isSeconds;

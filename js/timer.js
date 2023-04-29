@@ -1,8 +1,10 @@
-const timer = document.querySelector("#timer-form");
-const timerBtn = timer.querySelector(".timer__btn");
-const timerInput = timer.querySelector("#timer__input");
-const timerLabel = timer.querySelector(".timer__label");
-const timerBreak = timer.querySelector(".timer__break");
+"use strict";
+
+const timerForm = document.querySelector("#timer-form");
+const timerButton = timerForm.querySelector(".timer__btn");
+const timerInput = timerForm.querySelector("#timer__input");
+const timerLabel = timerForm.querySelector(".timer__label");
+const timerBreak = timerForm.querySelector(".timer__break");
 const TOTAL_TIME = parseInt(timerInput.getAttribute("max"));
 const NOW_STATE = "now-time";
 
@@ -22,9 +24,9 @@ const paintCircle = (setTime, restTime, breakTime) => {
   const setDeg = calcMinuteToRound(parseInt(setTime));
   const restDeg = calcMinuteToRound(restTime);
   const breakDeg = calcMinuteToRound(breakTime);
-  timerBtn.style.background = `conic-gradient(tomato 0deg, tomato ${restDeg}, orange ${restDeg}, orange ${setDeg}, white ${setDeg}, white ${breakDeg}, rgba(255,255,255, 0.7) ${breakDeg}, rgba(255,255,255, 0.7) 360deg`;
+  timerButton.style.background = `conic-gradient(tomato 0deg, tomato ${restDeg}, #FF9886 ${restDeg}, #FF9886 ${setDeg}, white ${setDeg}, white ${breakDeg}, rgba(255,255,255, 0.7) ${breakDeg}, rgba(255,255,255, 0.7) 360deg`;
 };
-const clearTime = () => {
+const resetTime = () => {
   restTime = 0;
   breakTime = focusTime;
   clearInterval(focusTimeout);
@@ -32,25 +34,25 @@ const clearTime = () => {
   breakState = false;
 };
 const inactiveTimer = () => {
-  clearTime();
+  resetTime();
   timerState = false;
   timerLabel.classList.remove(NOW_STATE);
   timerInput.classList.remove(NOW_STATE);
   timerBreak.classList.remove(NOW_STATE);
-  timerBtn.classList.remove("active");
-  timerBtn.innerText = "start";
+  timerButton.classList.remove("active");
+  timerButton.innerText = "start";
   paintCircle(focusTime, restTime, breakTime);
   timerInput.removeAttribute("hidden");
   timerLabel.innerText = `min focus.`;
 };
 const activeTimer = () => {
-  clearTime();
+  resetTime();
   timerState = true;
   timerLabel.classList.add(NOW_STATE);
   timerInput.classList.add(NOW_STATE);
   timerBreak.classList.remove(NOW_STATE);
-  timerBtn.classList.add("active");
-  timerBtn.innerText = "stop";
+  timerButton.classList.add("active");
+  timerButton.innerText = "stop";
   timerInput.setAttribute("hidden", "hidden");
   timerLabel.innerText = `${focusTime} min focus.`;
   setTimer();
@@ -61,14 +63,15 @@ const breakTimer = () => {
   timerLabel.classList.remove(NOW_STATE);
   timerInput.classList.remove(NOW_STATE);
   timerBreak.classList.add(NOW_STATE);
-  timerBtn.classList.add("active");
-  timerBtn.innerText = "stop";
+  timerButton.classList.add("active");
+  timerButton.innerText = "stop";
   setTimer();
 };
 const intervalFocus = () => {
   paintCircle(focusTime, restTime, breakTime);
   if (focusTime === restTime) {
     clearInterval(focusTimeout);
+    paintCircle(focusTime, restTime, breakTime);
     confirm("Break time, continue?") ? breakTimer() : inactiveTimer();
   }
   restTime += 1;
@@ -79,6 +82,7 @@ const intervalBreak = () => {
   if (breakTime === TOTAL_TIME) {
     breakTime = TOTAL_TIME;
     clearInterval(breakTimeout);
+    paintCircle(focusTime, restTime, breakTime);
     confirm("Focus time, continue?") ? activeTimer() : inactiveTimer();
   }
   breakTime += 1;
@@ -98,7 +102,7 @@ const paintBreakTime = (time) => {
   timerBreak.innerText = `${TOTAL_TIME - brk} min break time.`;
 };
 const onChangeNumber = (e) => {
-  e.preventDefault;
+  e.preventDefault();
   const min = parseInt(timerInput.getAttribute("min"));
   const max = parseInt(timerInput.getAttribute("max"));
   if (timerInput.value === "" || (timerInput.value > 0 && timerInput.value <= max)) {
@@ -120,7 +124,7 @@ const onChangeNumber = (e) => {
 // init
 paintCircle(timerInput.value, restTime, breakTime);
 paintBreakTime(timerInput.value);
-timer.addEventListener("submit", (e) => {
+timerForm.addEventListener("submit", (e) => {
   e.preventDefault();
   timerState ? inactiveTimer() : activeTimer();
 });
