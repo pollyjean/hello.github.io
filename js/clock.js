@@ -11,7 +11,8 @@ function getTime() {
   const minutes = d.getMinutes().toString().padStart(2, "0");
   const seconds = d.getSeconds().toString().padStart(2, "0");
   const ampm = hours >= 12 ? "PM" : "AM";
-  const hours_ampm = hours > 12 ? hours - 12 : hours;
+  let hours_ampm = hours > 12 ? hours - 12 : hours;
+  hours_ampm = hours_ampm.toString().padStart(2, "0");
   if (minutes === "00" && seconds === "00") {
     paintCal();
   }
@@ -25,7 +26,7 @@ function getDays() {
   const d = new Date();
   const weeks = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const years = d.getFullYear().toString();
-  const months = d.getMonth().toString().padStart(2, "0");
+  const months = (d.getMonth() + 1).toString().padStart(2, "0");
   const days = d.getDate().toString().padStart(2, "0");
   const week = d.getDay();
 
