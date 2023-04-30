@@ -55,6 +55,7 @@ const activeTimer = () => {
   timerButton.innerText = "stop";
   timerInput.setAttribute("hidden", "hidden");
   timerLabel.innerText = `${focusTime} min focus.`;
+  breakTime = focusTime;
   setTimer();
 };
 const breakTimer = () => {
