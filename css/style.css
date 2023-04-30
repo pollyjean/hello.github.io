@@ -104,9 +104,9 @@ button:active {
   opacity: 0.9;
 }
 .timer__btn.active {
-  animation: timer-ticktak 1.5s ease-in-out infinite;
+  animation: timer-rhythm 1.5s ease-in-out infinite;
 }
-@keyframes timer-ticktak {
+@keyframes timer-rhythm {
   0% {
     box-shadow: inset -1px 0 4px rgba(0, 0, 0, 0.1);
   }
