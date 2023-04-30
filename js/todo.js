@@ -3,8 +3,9 @@
 const todoForm = document.querySelector("#todo-form");
 const todoList = document.querySelector("#todo-list");
 const todoInput = todoForm.querySelector("input");
-const STORAGE_NAME = "todos-data";
+const STORAGE_NAME = "todo-data";
 const localData = localStorage.getItem(STORAGE_NAME);
+const MAX_ITEMS = 10;
 let todoArr = [];
 
 const paintTodo = (todo) => {
@@ -28,7 +29,7 @@ const removeTodo = (e) => {
   const targetList = removeTarget.closest("li");
   const targetId = targetList.dataset["id"];
   todoArr = todoArr.filter((item) => item.id !== targetId);
-  saveTodos();
+  saveTodo();
   targetList.remove();
 };
 const checkTodo = (e) => {
@@ -43,25 +44,31 @@ const checkTodo = (e) => {
     }
   });
   targetList.classList.toggle("checked");
-  saveTodos();
+  saveTodo();
 };
-
-const saveTodos = () => {
+const saveTodo = () => {
   const arrToStr = JSON.stringify(todoArr);
   localStorage.setItem(STORAGE_NAME, arrToStr);
 };
-
+const checkItemLimit = () => {
+  const itemsLength = document.querySelectorAll("#todo-list > li").length;
+  return itemsLength <= MAX_ITEMS;
+};
 if (localData) {
   todoArr = JSON.parse(localData);
   todoArr.forEach((item) => paintTodo(item));
 }
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  if (!checkItemLimit()) {
+    alert("Can no longer add notes.");
+    return;
+  }
   const todoValue = todoInput.value;
   const todoId = Date.now().toString();
   const todoObj = { id: todoId, value: todoValue, checked: false };
   todoInput.value = "";
   todoArr.push(todoObj);
-  saveTodos();
+  saveTodo();
   paintTodo(todoObj);
 });

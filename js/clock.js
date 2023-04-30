@@ -1,28 +1,27 @@
 "use strict";
 
-const clockWrap = document.querySelector(".clock-weather");
-const clock = clockWrap.querySelector("#clock");
-const cal = clockWrap.querySelector("#cal");
+const clock = document.querySelector("#clock");
+const cal = document.querySelector("#cal");
 let isSeconds = true;
 
-function getTime() {
+const getTime = () => {
   const d = new Date();
   const hours = d.getHours().toString().padStart(2, "0");
   const minutes = d.getMinutes().toString().padStart(2, "0");
   const seconds = d.getSeconds().toString().padStart(2, "0");
-  const ampm = hours >= 12 ? "PM" : "AM";
-  let hours_ampm = hours > 12 ? hours - 12 : hours;
-  hours_ampm = hours_ampm.toString().padStart(2, "0");
+  const amPm = hours >= 12 ? "PM" : "AM";
+  let hours_amPm = hours > 12 ? hours - 12 : hours;
+  hours_amPm = hours_amPm.toString().padStart(2, "0");
   if (minutes === "00" && seconds === "00") {
     paintCal();
   }
-  return isSeconds ? `${hours}:${minutes}:${seconds}` : `${ampm} ${hours_ampm}:${minutes}`;
-}
-function switchSeconds() {
+  return isSeconds ? `${hours}:${minutes}:${seconds}` : `${amPm} ${hours_amPm}:${minutes}`;
+};
+const switchSeconds = () => {
   isSeconds = !isSeconds;
   paintClock();
-}
-function getDays() {
+};
+const getDays = () => {
   const d = new Date();
   const weeks = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const years = d.getFullYear().toString();
@@ -31,14 +30,14 @@ function getDays() {
   const week = d.getDay();
 
   return `${years}-${months}-${days} ${weeks[week]}`;
-}
+};
 
-function paintClock() {
+const paintClock = () => {
   clock.innerText = getTime();
-}
-function paintCal() {
+};
+const paintCal = () => {
   cal.innerText = getDays();
-}
+};
 
 clock.addEventListener("click", switchSeconds);
 

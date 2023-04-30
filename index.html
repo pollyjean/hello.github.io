@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello.</title>
+  <title>Hello App</title>
   <link rel="stylesheet" href="css/style.css">
-  <script defer src="js/greetings.js"></script>
+  <script defer src="js/weather.js" type="module"></script>
+  <script defer src="js/greetings.js" type="module"></script>
   <script defer src="js/clock.js"></script>
   <script defer src="js/timer.js"></script>
   <script defer src="js/quotes.js"></script>
   <script defer src="js/background.js"></script>
   <script defer src="js/todo.js"></script>
-  <script defer src="js/weather.js"></script>
   <script defer src="js/holiday.js"></script>
 </head>
 <body>
@@ -27,13 +27,15 @@
 
   <h1 id="greeting" class="hidden" title="더블클릭하면 이름 변경할 수 있습니다">Hello</h1>
 
-  <div class="clock-weather">
-    <div id="weather">
-      <time id="cal">2023-01-01</time>
-      <span class="weather__loc">Location</span>
-      <span class="weather__temp">Temp</span>
-      <span class="weather__stat hidden">State</span>
-      <span class="weather__id"></span>
+  <div class="date-weather">
+    <div class="weather-cal">
+      <time id="cal"></time>
+      <div id="weather">
+        <span class="weather__loc"></span>
+        <span class="weather__temp"></span>
+        <span class="weather__stat hidden"></span>
+        <span class="weather__id"></span>
+      </div>
     </div>
 
     <time id="clock">00:00:00</time>

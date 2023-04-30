@@ -1,5 +1,7 @@
 "use strict";
 
+import { searchDayNight } from "./weather.js";
+
 const loginForm = document.querySelector("#login-form");
 const greeting = document.querySelector("#greeting");
 const loginInput = loginForm.querySelector("input");
@@ -20,20 +22,33 @@ if (savedUsername === null) {
   switchToGreeting(savedUsername);
 }
 
-function switchToGreeting(username) {
-  document.title = `Hello ${username}.`;
-  greeting.innerText = `Hello ${username}.`;
+const paintGreeting = () => {
+  const dayNight = searchDayNight();
+  const hour = parseInt(new Date().getHours());
+  let greetingTxt = "";
+  if (dayNight === "d") {
+    greetingTxt = hour > 11 ? "Good afternoon" : "Good morning";
+  } else if (dayNight === "n") {
+    greetingTxt = hour > 23 ? "Good night" : "Good evening";
+  }
+  return greetingTxt;
+};
+
+const switchToGreeting = (username) => {
+  const greetingTxt = paintGreeting();
+  document.title = `${greetingTxt} ${username}. | Hello App`;
+  greeting.innerText = `${greetingTxt}, ${username}.`;
   greeting.classList.remove(HIDDEN_CLASS_NAME);
   greeting.addEventListener("dblclick", handleRemoveName);
-}
+};
 
-function handleRemoveName() {
+const handleRemoveName = () => {
   if (window.confirm("Reset this name?")) {
-    document.title = `Hello.`;
+    document.title = `paintGreeting(). | Hello App`;
     localStorage.removeItem(USERNAME_KEY);
     greeting.classList.add(HIDDEN_CLASS_NAME);
     loginForm.classList.remove(HIDDEN_CLASS_NAME);
     loginInput.value = "";
     loginInput.focus();
   }
-}
+};
