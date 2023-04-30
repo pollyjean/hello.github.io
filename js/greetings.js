@@ -1,7 +1,5 @@
 "use strict";
 
-import { searchDayNight } from "./weather.js";
-
 const loginForm = document.querySelector("#login-form");
 const greeting = document.querySelector("#greeting");
 const loginInput = loginForm.querySelector("input");
@@ -9,14 +7,16 @@ const HIDDEN_CLASS_NAME = "hidden";
 const USERNAME_KEY = "username";
 const savedUsername = localStorage.getItem(USERNAME_KEY);
 const paintGreeting = () => {
-  const dayNight = searchDayNight();
-  const hour = parseInt(new Date().getHours());
+  const hours = parseInt(new Date().getHours());
   let greetingTxt = "";
-  if (dayNight === "d") {
-    greetingTxt = hour > 11 ? "Good afternoon" : "Good morning";
-  } else if (dayNight === "n") {
-    greetingTxt = hour > 23 ? "Good night" : "Good evening";
+  if (hours < 12) {
+    greetingTxt = "Good morning";
+  } else if (hours >= 12 && hours < 17) {
+    greetingTxt = "Good afternoon";
+  } else if (hours >= 17) {
+    greetingTxt = "Good evening";
   }
+
   return greetingTxt;
 };
 const switchToGreeting = (username) => {

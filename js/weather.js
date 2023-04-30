@@ -6,28 +6,18 @@ const weatherLoc = document.querySelector(".weather__loc");
 const weatherStat = document.querySelector(".weather__stat");
 const weatherTemp = document.querySelector(".weather__temp");
 const weatherId = document.querySelector(".weather__id");
-const sunTimes = { sunrise: {}, sunset: {}, stat: "" };
 const onGeoSuccess = (position) => {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
-  const sunUrl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=today&formatted=0`;
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-  fetch(sunUrl)
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      sunTimes.sunrise = new Date(data.results.sunrise);
-      sunTimes.sunset = new Date(data.results.sunset);
-
-      data.status === "OK" &&
-        fetch(weatherUrl)
-          .then((response) => response.json())
-          .then((data) => {
-            weatherElement.classList.add("active");
-            weatherLoc.innerText = data.name;
-            weatherStat.innerText = data.weather[0].main;
-            weatherTemp.innerText = `${parseFloat(data.main.temp).toFixed(1)}℃`;
-            weatherId.innerHTML = `<img src="https://openweathermap.org/img/wn/${searchWeather(data.weather[0].id)}${searchDayNight()}@2x.png" alt="${data.weather[0].main}" />`;
-          });
+      weatherElement.classList.add("active");
+      weatherLoc.innerText = data.name;
+      weatherStat.innerText = data.weather[0].main;
+      weatherTemp.innerText = `${parseFloat(data.main.temp).toFixed(1)}℃`;
+      weatherId.innerHTML = `<img src="https://openweathermap.org/img/wn/${searchWeather(data.weather[0].id)}${searchDayNight()}@2x.png" alt="${data.weather[0].main}" />`;
     });
 };
 const onGeoError = () => {
@@ -66,17 +56,15 @@ const searchWeather = (weatherId) => {
       }
   }
 };
-export const searchDayNight = () => {
-  const d = new Date();
-  const hours = parseInt(d.getHours());
-  const stat = sunTimes.stat;
-  const sunrise = sunTimes.sunrise;
-  const sunset = sunTimes.sunset;
 
-  if (d >= sunrise && d <= sunset) {
+const searchDayNight = () => {
+  const d = parseInt(new Date().getHours());
+
+  if (d >= 6 && d <= 17) {
     return "d";
   } else {
     return "n";
   }
 };
+
 navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);

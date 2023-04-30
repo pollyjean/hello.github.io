@@ -15,6 +15,7 @@ const getTime = () => {
   if (minutes === "00" && seconds === "00") {
     paintCal();
   }
+
   return isSeconds ? `${hours}:${minutes}:${seconds}` : `${amPm} ${hours_amPm}:${minutes}`;
 };
 const switchSeconds = () => {

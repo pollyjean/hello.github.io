@@ -8,6 +8,7 @@
 //        4. 언제든지 버튼으로 멈출 수 있음
 //        5. 시간이 다 되면 브라우저의 알림(confirm)으로 계속할지 물어봄
 //        6. 타이머가 시작하면 집중하는 시간은 수정할 수 없다
+//        7. 10번 이상 반복시 그만하라고 한다
 
 const timerForm = document.querySelector("#timer-form");
 const timerButton = timerForm.querySelector(".timer__btn");
@@ -25,6 +26,7 @@ let timerState = false;
 let breakState = false;
 let focusTimeout;
 let breakTimeout;
+let countCycle = 0;
 
 // func : 총시간에 대한 포커스 타임에 대한 비율을 만들고 그걸 원(360deg)를 곱해서 값으로 쓸 수 있도록
 const calcMinuteToRound = (minutes) => {
@@ -104,7 +106,13 @@ const intervalBreak = () => {
     breakTime = TOTAL_TIME;
     clearInterval(breakTimeout);
     paintCircle(focusTime, restTime, breakTime);
-    confirm("Focus time, continue?") ? focusTimer() : inactiveTimer();
+    countCycle += 1;
+    if (countCycle < 10) {
+      confirm(`Focus time, continue? (${countCycle + 1}KMN)`) ? focusTimer() : inactiveTimer();
+    } else {
+      alert(`You've done enough for today.`);
+      inactiveTimer();
+    }
   }
   breakTime += 1;
 };
@@ -158,4 +166,4 @@ timerForm.addEventListener("submit", (e) => {
 });
 // event : input 안에서 키보드나 마우스 클릭이 있으면 바로 반영
 timerInput.addEventListener("keyup", onChangeNumber);
-timerInput.addEventListener("mouseup", onChangeNumber);
+timerInput.addEventListener("change", onChangeNumber);
