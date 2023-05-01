@@ -46,6 +46,11 @@ const quotes = [
     author: "장기하와 얼굴들 - 그건 니 생각이고",
     citation: "장기하와 얼굴들 mono 앨범(2018) 중 에서",
   },
+  {
+    quote: "Don't forget to eat 김취, Saranghaeyo",
+    author: "Nicolas Serrano Arevalo ",
+    citation: "노마드 코더 Nomad Coders, YouTube 채널 끝인사말",
+  },
 ];
 
 const quote = document.querySelector("#quote");
