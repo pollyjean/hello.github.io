@@ -28,7 +28,7 @@ const switchToGreeting = (username) => {
 };
 const handleRemoveName = () => {
   if (window.confirm("Reset this name?")) {
-    document.title = `paintGreeting(). | Hello App`;
+    document.title = `${paintGreeting()}. | Hello App`;
     localStorage.removeItem(USERNAME_KEY);
     greeting.classList.add(HIDDEN_CLASS_NAME);
     loginForm.classList.remove(HIDDEN_CLASS_NAME);
